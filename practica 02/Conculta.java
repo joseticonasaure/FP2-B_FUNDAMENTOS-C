@@ -13,6 +13,7 @@ public class Consulta {
             if (conec == null ) {
                 Class.forName("com.mysql.jdbc.Driver");
                 conec = DriverManager.getConnection("jdbc:mysql://localhost/fp2", "root", "1234");
+                System.out.println("conexion exitosa");
             }
             return conec;
         } catch (Exception e) {
