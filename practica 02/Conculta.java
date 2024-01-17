@@ -12,7 +12,7 @@ public class Consulta {
         try {
             if (conec == null ) {
                 Class.forName("com.mysql.jdbc.Driver");
-                conec = DriverManager.getConnection("jdbc:mysql://localhost/tu_base_de_datos", "tu_usuario", "tu_contraseña");
+                conec = DriverManager.getConnection("jdbc:mysql://localhost/fp2", "root", "1234");
             }
             return conec;
         } catch (Exception e) {
