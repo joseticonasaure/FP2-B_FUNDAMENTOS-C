@@ -1,21 +1,29 @@
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
-import java.util.*;
-public class Vista {
-	
-	public static void imprimirTablero(String[][] tablero, ArrayList<Ejercito> reinoA, ArrayList<Ejercito> reinoB) {
-    	for (char columna = 'A'; columna <= 'J'; columna++) {
-            System.out.print("        " + columna);
+public class Vista extends JFrame {
+    private JPanel tableroPanel;
+
+    public Vista(String[][] tablero, ArrayList<Ejercito> reinoA, ArrayList<Ejercito> reinoB) {
+        setTitle("Tablero ");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        tableroPanel = new JPanel(new GridLayout(11, 11));
+        tableroPanel.add(new JLabel(" "));
+        for (char columna = 'A'; columna <= 'J'; columna++) {
+            tableroPanel.add(new JLabel(String.valueOf(columna), SwingConstants.CENTER));
         }
-        System.out.println();
-        System.out.println("     ________ ________ ________ ________ ________ ________ ________ ________ ________ ________ ");
+
         for (int i = 0; i < tablero.length; i++) {
-        	if(i+1 < 10) {
-        		System.out.print(" " + (i + 1));
-        	} else {
-        		System.out.print(i+1); 
-        	}
-        	System.out.print("  ");
+            if (i + 1 < 10) {
+                tableroPanel.add(new JLabel(" " + (i + 1), SwingConstants.RIGHT));
+            } else {
+                tableroPanel.add(new JLabel(String.valueOf(i + 1), SwingConstants.RIGHT));
+            }
             for (int j = 0; j < tablero[i].length; j++) {
+                JLabel casillaLabel = new JLabel("", SwingConstants.CENTER);
+                casillaLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 if (tablero[i][j] != null) {
                     String reinoEjercito = tablero[i][j];
                     String[] partes = reinoEjercito.split(" ");
@@ -40,18 +48,20 @@ public class Vista {
                         int totalSoldados = ejercitoEncontrado.getNumeroSoldados();
                         int vidaTotal = ejercitoEncontrado.getSumaVidaTotal();
                         String info = totalSoldados + "-" + vidaTotal + "-" + nombreReino.charAt(0);
-                        System.out.printf("| %1$-7s", info);
+                        casillaLabel.setText(info);
                     } else {
-                        System.out.print("|        ");
+                        casillaLabel.setText("        ");
                     }
                 } else {
-                    System.out.print("|        ");
+                    casillaLabel.setText("        ");
                 }
+                tableroPanel.add(casillaLabel);
             }
-            System.out.println("|"); 
-            System.out.println("    -------------------------------------------------------------------------------------------");
         }
+
+        setLayout(new BorderLayout());
+        add(tableroPanel, BorderLayout.CENTER);
+
+        setVisible(true);
     }
 }
-
-
