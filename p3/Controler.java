@@ -1,5 +1,7 @@
-
 import java.util.*;
+import javax.swing.*;
+import java.awt.*;
+
 public class Controler{
 	Vista vista;
 	Mapa mapa;
@@ -9,10 +11,12 @@ public class Controler{
 		this.mapa = mapa;
 	}
 	public void mostrarMapa() {
-		String[][] tablero = mapa.getTablero();
-		ArrayList<Ejercito> reinoA = mapa.getReinoA();
-		ArrayList<Ejercito> reinoB = mapa.getReinoB();
 		mapa.iniciarJuego();
-		Vista.imprimirTablero(tablero, reinoA, reinoB);
+		SwingUtilities.invokeLater(() -> {
+			String[][] tablero = mapa.getTablero();
+			ArrayList<Ejercito> reinoA = mapa.getReinoA();
+			ArrayList<Ejercito> reinoB = mapa.getReinoB();
+			new Vista(tablero, reinoA, reinoB);
+		});
 	}
 }
