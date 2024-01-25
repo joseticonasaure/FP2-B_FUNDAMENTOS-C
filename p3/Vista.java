@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Vista extends JFrame {
     private JPanel tableroPanel;
 
-    public Vista(String[][] tablero, ArrayList<Ejercito> reinoA, ArrayList<Ejercito> reinoB) {
+    public void imprimirTablero(String[][] tablero, ArrayList<Ejercito> reinoA, ArrayList<Ejercito> reinoB) {
         setTitle("Tablero ");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -17,9 +17,9 @@ public class Vista extends JFrame {
 
         for (int i = 0; i < tablero.length; i++) {
             if (i + 1 < 10) {
-                tableroPanel.add(new JLabel(" " + (i + 1), SwingConstants.RIGHT));
+                tableroPanel.add(new JLabel(" " + (i + 1), SwingConstants.CENTER));
             } else {
-                tableroPanel.add(new JLabel(String.valueOf(i + 1), SwingConstants.RIGHT));
+                tableroPanel.add(new JLabel(String.valueOf(i + 1), SwingConstants.CENTER));
             }
             for (int j = 0; j < tablero[i].length; j++) {
                 JLabel casillaLabel = new JLabel("", SwingConstants.CENTER);
